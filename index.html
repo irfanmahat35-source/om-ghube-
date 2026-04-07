@@ -59,10 +59,35 @@
         .vignette { position: fixed; inset: 0; z-index: 5; background: radial-gradient(circle, transparent 35%, rgba(0,0,0,1) 100%); pointer-events: none; }
         .section-heading { font-family: 'Playfair Display', serif; font-size: var(--text-lg); line-height: 1; letter-spacing: -1px; }
 
-        .profile-img, .design-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s ease; filter: grayscale(100%); }
-        .glass-card:hover .profile-img, .glass-card:hover .design-img { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
+        .profile-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s ease; filter: grayscale(100%); }
+        .glass-card:hover .profile-img { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
+
+        /* --- DOWNLOAD BUTTON --- */
+        .download-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            margin-top: 25px; padding: 12px 25px; border: 1px solid rgba(188, 24, 24, 0.3);
+            background: rgba(188, 24, 24, 0.05); color: var(--accent-red);
+            font-size: 10px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 2px; transition: 0.5s; cursor: pointer;
+        }
+        .download-btn:hover { background: var(--accent-red); color: #fff; border-color: var(--accent-red); box-shadow: 0 10px 20px rgba(188, 24, 24, 0.2); }
 
         iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- HOLOGRAM EFFECT --- */
+        .holo-card {
+            background: rgba(0, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            position: relative; overflow: hidden;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .holo-card::before {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 255, 0.1) 50%);
+            background-size: 100% 4px; opacity: 0.4; pointer-events: none; z-index: 2;
+        }
+        .design-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.5s ease; filter: grayscale(100%) sepia(30%) hue-rotate(140deg) brightness(0.8); z-index: 1; }
+        .holo-card:hover .design-img { opacity: 1; filter: grayscale(0%) sepia(0%) hue-rotate(0deg) brightness(1); }
 
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-thumb { background: var(--accent-red); }
@@ -81,7 +106,7 @@
     </nav>
 
     <div id="intro-layer">
-        <p class="text-[8px] tracking-[2.5em] uppercase opacity-30 mb-8 ml-[2.5em]">Independent Director</p>
+        <p class="text-[8px] tracking-[2.5em] uppercase opacity-30 mb-8 ml-[2.5em]">Visual Artist</p>
         <h1 class="hero-title">OM GHUBE</h1>
         <button class="enter-btn" onclick="startCinematic()">Enter Experience</button>
     </div>
@@ -97,19 +122,23 @@
     <main id="main-portfolio">
         <div class="max-w-6xl mx-auto px-6 md:px-12">
             
-            <section class="h-[70vh] flex flex-col justify-center">
+            <section class="h-[60vh] flex flex-col justify-center">
                 <h3 class="text-red-600 font-bold uppercase tracking-[1em] text-[8px] mb-6">// The Philosophy</h3>
                 <h1 class="section-heading italic mb-8">CAPTURING <br> <span class="text-transparent" style="-webkit-text-stroke: 1px var(--earth-tan);">NATURE'S</span> <br> <span class="text-red-600">RAW NARRATIVE.</span></h1>
-                <p class="max-w-md text-zinc-500 text-[12px] leading-relaxed opacity-80">Translating organic atmosphere into cinematic sequences. Balancing atmospheric realism with contemporary editing logic.</p>
             </section>
 
-            <section id="about" class="py-24 grid md:grid-cols-2 gap-20 border-t border-white/5 items-center">
+            <section id="about" class="py-20 grid md:grid-cols-2 gap-20 border-t border-white/5 items-center">
                 <div>
                     <h2 class="section-heading italic mb-8" style="font-size: var(--text-md);">The Profile</h2>
-                    <p class="text-zinc-500 leading-relaxed text-sm mb-10">
-                        I am Om Ghube, a creative director and editor focused on the architecture of visual rhythm. I specialize in atmospheric storytelling and high-end post-production, crafting narratives that resonate through natural realism.
+                    <p class="text-zinc-500 leading-relaxed text-sm mb-6">
+                        I am Om Ghube, a Creative Director focused on the architecture of visual rhythm. I specialize in atmospheric post-production and high-end visual communication.
                     </p>
                     <div class="w-16 h-[1px] bg-red-600"></div>
+                    
+                    <a href="https://drive.google.com/file/d/1D93QlzftQVKmUxb0q1TmnuUKsMuG2n-G/view?usp=sharing" target="_blank" class="download-btn">
+                        <span>Get My Resume</span>
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+                    </a>
                 </div>
                 <div class="glass-card aspect-[4/5] bg-zinc-900/40 relative">
                      <img src="om.png" alt="Om Ghube" class="profile-img">
@@ -117,16 +146,14 @@
                 </div>
             </section>
 
-            <section id="work" class="py-24 border-t border-white/5">
+            <section id="work" class="py-20 border-t border-white/5">
                 <div class="flex justify-between items-end mb-16">
-                    <h2 class="section-heading italic">EDITORIAL <br> <span class="text-red-600">SHOWCASE.</span></h2>
-                    <p class="text-[8px] tracking-[0.5em] text-zinc-600 uppercase">Featured Showreels</p>
+                    <h2 class="section-heading italic">MOTION <br> <span class="text-red-600">EDITORIALS.</span></h2>
                 </div>
                 <div class="grid md:grid-cols-2 gap-10">
                     <div class="glass-card aspect-video"><iframe src="https://www.youtube.com/embed/qO1IzIB8eTk"></iframe></div>
                     <div class="glass-card aspect-video"><iframe src="https://www.youtube.com/embed/QYtVLbptQcY"></iframe></div>
                 </div>
-                
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-12">
                     <div class="glass-card aspect-[9/16]"><iframe src="https://www.youtube.com/embed/l6kwdYVIPKM"></iframe></div>
                     <div class="glass-card aspect-[9/16]"><iframe src="https://www.youtube.com/embed/YnN6KRQrlBM"></iframe></div>
@@ -137,30 +164,30 @@
             </section>
 
             <section id="graphics" class="py-24 border-t border-white/5">
-                <div class="mb-16">
-                    <h2 class="section-heading italic">VISUAL <br> <span class="text-red-600">IDENTITIES.</span></h2>
-                    <p class="text-[8px] tracking-[0.5em] text-zinc-600 uppercase">Graphic Design Portfolio</p>
+                <div class="mb-20">
+                    <h2 class="section-heading italic">STATIC <br> <span class="text-red-600">IDENTITIES.</span></h2>
+                    <p class="text-[8px] tracking-[0.5em] text-zinc-600 uppercase mt-4">Graphic Portfolio // Holographic Projection</p>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="glass-card aspect-square"><img src="https://ibb.co/JjgSyZKv" class="design-img"></div>
-                    <div class="glass-card aspect-square"><img src="https://ibb.co/hhhXxsv" class="design-img"></div>
-                    <div class="glass-card aspect-square"><img src="https://ibb.co/cngL8by" class="design-img"></div>
-                    <div class="glass-card aspect-square"><img src="https://ibb.co/MD5Zcv9W" class="design-img"></div>
-                    <div class="glass-card aspect-square"><img src="https://ibb.co/S4Q467P6" class="design-img"></div>
-                    <div class="glass-card aspect-square"><img src="https://ibb.co/sJCxShw5" class="design-img"></div>
-                    <div class="glass-card aspect-square"><img src="https://ibb.co/9H4rxgwX" class="design-img"></div>
-                    <div class="glass-card aspect-square"><img src="https://ibb.co/mFtNC1nw" class="design-img"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+                    <div class="holo-card aspect-[3/4]"><img src="https://i.ibb.co/r2NXc9mx/Whats-App-Image-2026-04-07-at-12-28-33-AM.jpg" class="design-img"></div>
+                    <div class="holo-card aspect-[3/4]"><img src="https://i.ibb.co/d11bsBy/Whats-App-Image-2026-04-07-at-12-28-34-AM-1.jpg" class="design-img"></div>
+                    <div class="holo-card aspect-[3/4]"><img src="https://i.ibb.co/PHmQWTr/Whats-App-Image-2026-04-07-at-12-28-34-AM.jpg" class="design-img"></div>
+                    <div class="holo-card aspect-[3/4]"><img src="https://i.ibb.co/Kjzb2PmR/Whats-App-Image-2026-04-07-at-12-28-35-AM-1.jpg" class="design-img"></div>
+                    <div class="holo-card aspect-[3/4]"><img src="https://i.ibb.co/Rkhkg49g/Whats-App-Image-2026-04-07-at-12-28-35-AM.jpg" class="design-img"></div>
+                    <div class="holo-card aspect-[3/4]"><img src="https://i.ibb.co/5xkpDd8Y/Whats-App-Image-2026-04-07-at-12-28-36-AM-1.jpg" class="design-img"></div>
+                    <div class="holo-card aspect-[3/4] md:col-span-2 md:aspect-[16/9]"><img src="https://i.ibb.co/8gx7ysz3/Whats-App-Image-2026-04-07-at-12-28-36-AM-2.jpg" class="design-img"></div>
+                    <div class="holo-card aspect-[3/4]"><img src="https://i.ibb.co/Lh6NzbTW/Whats-App-Image-2026-04-07-at-12-28-36-AM.jpg" class="design-img"></div>
                 </div>
             </section>
 
             <section id="contact" class="py-40 text-center border-t border-white/5">
                 <h1 class="section-heading italic text-red-600 mb-8" style="font-size: var(--text-md);">DIRECTIVE.</h1>
                 <div class="flex flex-col items-center">
-                    <a href="mailto:omghube@email.com" class="text-xl md:text-3xl font-light underline underline-offset-[15px] decoration-red-600 hover:text-white transition duration-500">omghube@email.com</a>
-                    <div class="mt-16 flex gap-10">
-                        <a href="#" class="text-[8px] uppercase tracking-widest font-bold hover:text-red-600">Instagram</a>
-                        <a href="https://youtube.com/@OmGhube" target="_blank" class="text-[8px] uppercase tracking-widest font-bold hover:text-red-600">YouTube</a>
-                        <a href="#" class="text-[8px] uppercase tracking-widest font-bold hover:text-red-600">LinkedIn</a>
+                    <a href="mailto:omghube48@gmail.com" class="text-xl md:text-3xl font-light underline underline-offset-[15px] decoration-red-600 hover:text-white transition duration-500 mb-16">omghube48@gmail.com</a>
+                    <div class="flex gap-10">
+                        <a href="https://www.linkedin.com/in/om-ghube-3505622aa" target="_blank" class="text-[8px] uppercase tracking-widest font-bold hover:text-red-600 transition">LinkedIn</a>
+                        <a href="https://www.instagram.com/om_ghube_92" target="_blank" class="text-[8px] uppercase tracking-widest font-bold hover:text-red-600 transition">Instagram</a>
+                        <a href="https://youtube.com/@OmGhube" target="_blank" class="text-[8px] uppercase tracking-widest font-bold hover:text-red-600 transition">YouTube</a>
                     </div>
                 </div>
             </section>
@@ -183,42 +210,20 @@
         function startCinematic() {
             const tl = gsap.timeline();
             const video = document.getElementById('bg-vid');
-
             tl.to("#intro-layer", { duration: 1.2, opacity: 0, display: "none", ease: "power3.inOut" });
-            tl.to("#video-wrapper", { 
-                opacity: 1, 
-                duration: 0.1, 
-                onStart: () => video.play()
-            });
+            tl.to("#video-wrapper", { opacity: 1, duration: 0.1, onStart: () => video.play() });
             tl.to("#video-wrapper", { scale: 1, duration: 5, ease: "power2.out" });
-
             tl.to("#main-portfolio", { 
-                duration: 2, 
-                display: "block", 
-                opacity: 1,
+                duration: 2, display: "block", opacity: 1,
                 onStart: () => {
                     document.body.style.overflowY = "auto";
                     gsap.to("#top-nav", { display: "flex", opacity: 1, y: 0, duration: 1, ease: "expo.out" });
                 }
             }, "-=3.5");
-
-            tl.from("section h1, section p, section h3", {
-                y: 50,
-                opacity: 0,
-                stagger: 0.1,
-                duration: 1.5,
-                ease: "expo.out"
-            }, "-=2");
         }
 
-        gsap.utils.toArray('.glass-card').forEach(card => {
-            gsap.from(card, {
-                scrollTrigger: { trigger: card, start: "top 95%" },
-                y: 40,
-                opacity: 0,
-                duration: 1.2,
-                ease: "expo.out"
-            });
+        gsap.utils.toArray('.glass-card, .holo-card').forEach(card => {
+            gsap.from(card, { scrollTrigger: { trigger: card, start: "top 95%" }, y: 40, opacity: 0, duration: 1.2, ease: "expo.out" });
         });
     </script>
 </body>
