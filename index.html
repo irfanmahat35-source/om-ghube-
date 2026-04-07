@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Ghube | Creative Director & Visual Artist</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root { 
+            --accent-red: #bc1818; 
+            --bg-dark: #0a0a0a; 
+            --earth-tan: #e0d7c6;
+            --text-xs: 0.618rem;
+            --text-sm: 0.8rem;
+            --text-md: 1.618rem;
+            --text-lg: 2.618rem;
+            --text-xl: 4.236rem;
+        }
+
+        body, html { 
+            margin: 0; padding: 0; width: 100%; background: #000; 
+            color: var(--earth-tan); font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden; scroll-behavior: smooth;
+        }
+
+        /* --- NAVIGATION --- */
+        #top-nav {
+            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+            padding: 0 5%; z-index: 200; display: none; opacity: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+        }
+        .nav-item {
+            font-size: var(--text-xs); font-weight: 800; text-transform: uppercase;
+            letter-spacing: 3px; margin-left: 35px; transition: 0.4s;
+            cursor: pointer; opacity: 0.6;
+        }
+        .nav-item:hover { color: var(--accent-red); opacity: 1; }
+
+        /* --- CINEMATIC INTRO --- */
+        #video-wrapper { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; transform: scale(1.3); }
+        video { width: 100%; height: 100%; object-fit: cover; filter: sepia(10%) contrast(110%) brightness(35%); }
+        
+        #intro-layer { position: fixed; inset: 0; z-index: 100; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: var(--text-xl); color: var(--accent-red); text-transform: uppercase; font-style: italic; letter-spacing: -0.2rem; line-height: 0.8; }
+        
+        .enter-btn { margin-top: 40px; padding: 18px 60px; border: 1px solid var(--accent-red); background: transparent; color: var(--accent-red); font-weight: 700; letter-spacing: 6px; cursor: pointer; transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); text-transform: uppercase; font-size: var(--text-xs); }
+        .enter-btn:hover { background: var(--accent-red); color: #fff; box-shadow: 0 0 40px rgba(188, 24, 24, 0.3); }
+
+        /* --- CONTENT STYLING --- */
+        #main-portfolio { position: relative; z-index: 10; display: none; opacity: 0; background: linear-gradient(to bottom, transparent, var(--bg-dark) 10vh); }
+        
+        .glass-card { background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.04); transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); overflow: hidden; position: relative; }
+        .glass-card:hover { border-color: var(--accent-red); transform: translateY(-8px); background: rgba(255, 255, 255, 0.03); }
+        
+        .vignette { position: fixed; inset: 0; z-index: 5; background: radial-gradient(circle, transparent 35%, rgba(0,0,0,1) 100%); pointer-events: none; }
+        .section-heading { font-family: 'Playfair Display', serif; font-size: var(--text-lg); line-height: 1; letter-spacing: -1px; }
+
+        .profile-img, .design-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.8s ease; filter: grayscale(100%); }
+        .glass-card:hover .profile-img, .glass-card:hover .design-img { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
+
+        iframe { width: 100%; height: 100%; border: none; }
+
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-red); }
+    </style>
+</head>
+<body>
+
+    <nav id="top-nav" class="flex justify-between items-center">
+        <div class="text-sm font-black italic tracking-tighter text-red-600">OG.</div>
+        <div class="flex items-center">
+            <a onclick="scrollToSec('about')" class="nav-item">Profile</a>
+            <a onclick="scrollToSec('work')" class="nav-item">Motion</a>
+            <a onclick="scrollToSec('graphics')" class="nav-item">Design</a>
+            <a onclick="scrollToSec('contact')" class="nav-item">Connect</a>
+        </div>
+    </nav>
+
+    <div id="intro-layer">
+        <p class="text-[8px] tracking-[2.5em] uppercase opacity-30 mb-8 ml-[2.5em]">Independent Director</p>
+        <h1 class="hero-title">OM GHUBE</h1>
+        <button class="enter-btn" onclick="startCinematic()">Enter Experience</button>
+    </div>
+
+    <div id="video-wrapper">
+        <video id="bg-vid" muted playsinline loop>
+            <source src="horse.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="vignette"></div>
+
+    <main id="main-portfolio">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            
+            <section class="h-[70vh] flex flex-col justify-center">
+                <h3 class="text-red-600 font-bold uppercase tracking-[1em] text-[8px] mb-6">// The Philosophy</h3>
+                <h1 class="section-heading italic mb-8">CAPTURING <br> <span class="text-transparent" style="-webkit-text-stroke: 1px var(--earth-tan);">NATURE'S</span> <br> <span class="text-red-600">RAW NARRATIVE.</span></h1>
+                <p class="max-w-md text-zinc-500 text-[12px] leading-relaxed opacity-80">Translating organic atmosphere into cinematic sequences. Balancing atmospheric realism with contemporary editing logic.</p>
+            </section>
+
+            <section id="about" class="py-24 grid md:grid-cols-2 gap-20 border-t border-white/5 items-center">
+                <div>
+                    <h2 class="section-heading italic mb-8" style="font-size: var(--text-md);">The Profile</h2>
+                    <p class="text-zinc-500 leading-relaxed text-sm mb-10">
+                        I am Om Ghube, a creative director and editor focused on the architecture of visual rhythm. I specialize in atmospheric storytelling and high-end post-production, crafting narratives that resonate through natural realism.
+                    </p>
+                    <div class="w-16 h-[1px] bg-red-600"></div>
+                </div>
+                <div class="glass-card aspect-[4/5] bg-zinc-900/40 relative">
+                     <img src="om.png" alt="Om Ghube" class="profile-img">
+                     <p class="absolute bottom-10 right-[-30px] text-[8px] tracking-[1.2em] opacity-20 uppercase font-bold rotate-90">VISION & CRAFT</p>
+                </div>
+            </section>
+
+            <section id="work" class="py-24 border-t border-white/5">
+                <div class="flex justify-between items-end mb-16">
+                    <h2 class="section-heading italic">EDITORIAL <br> <span class="text-red-600">SHOWCASE.</span></h2>
+                    <p class="text-[8px] tracking-[0.5em] text-zinc-600 uppercase">Featured Showreels</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="glass-card aspect-video"><iframe src="https://www.youtube.com/embed/qO1IzIB8eTk"></iframe></div>
+                    <div class="glass-card aspect-video"><iframe src="https://www.youtube.com/embed/QYtVLbptQcY"></iframe></div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-12">
+                    <div class="glass-card aspect-[9/16]"><iframe src="https://www.youtube.com/embed/l6kwdYVIPKM"></iframe></div>
+                    <div class="glass-card aspect-[9/16]"><iframe src="https://www.youtube.com/embed/YnN6KRQrlBM"></iframe></div>
+                    <div class="glass-card aspect-[9/16]"><iframe src="https://www.youtube.com/embed/A_XOt6kg4uU"></iframe></div>
+                    <div class="glass-card aspect-[9/16]"><iframe src="https://www.youtube.com/embed/ZrE4F7hzqyI"></iframe></div>
+                    <div class="glass-card aspect-[9/16]"><iframe src="https://www.youtube.com/embed/59UuGP085AM"></iframe></div>
+                </div>
+            </section>
+
+            <section id="graphics" class="py-24 border-t border-white/5">
+                <div class="mb-16">
+                    <h2 class="section-heading italic">VISUAL <br> <span class="text-red-600">IDENTITIES.</span></h2>
+                    <p class="text-[8px] tracking-[0.5em] text-zinc-600 uppercase">Graphic Design Portfolio</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="glass-card aspect-square"><img src="https://ibb.co/JjgSyZKv" class="design-img"></div>
+                    <div class="glass-card aspect-square"><img src="https://ibb.co/hhhXxsv" class="design-img"></div>
+                    <div class="glass-card aspect-square"><img src="https://ibb.co/cngL8by" class="design-img"></div>
+                    <div class="glass-card aspect-square"><img src="https://ibb.co/MD5Zcv9W" class="design-img"></div>
+                    <div class="glass-card aspect-square"><img src="https://ibb.co/S4Q467P6" class="design-img"></div>
+                    <div class="glass-card aspect-square"><img src="https://ibb.co/sJCxShw5" class="design-img"></div>
+                    <div class="glass-card aspect-square"><img src="https://ibb.co/9H4rxgwX" class="design-img"></div>
+                    <div class="glass-card aspect-square"><img src="https://ibb.co/mFtNC1nw" class="design-img"></div>
+                </div>
+            </section>
+
+            <section id="contact" class="py-40 text-center border-t border-white/5">
+                <h1 class="section-heading italic text-red-600 mb-8" style="font-size: var(--text-md);">DIRECTIVE.</h1>
+                <div class="flex flex-col items-center">
+                    <a href="mailto:omghube@email.com" class="text-xl md:text-3xl font-light underline underline-offset-[15px] decoration-red-600 hover:text-white transition duration-500">omghube@email.com</a>
+                    <div class="mt-16 flex gap-10">
+                        <a href="#" class="text-[8px] uppercase tracking-widest font-bold hover:text-red-600">Instagram</a>
+                        <a href="https://youtube.com/@OmGhube" target="_blank" class="text-[8px] uppercase tracking-widest font-bold hover:text-red-600">YouTube</a>
+                        <a href="#" class="text-[8px] uppercase tracking-widest font-bold hover:text-red-600">LinkedIn</a>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center opacity-20 text-[7px] uppercase tracking-[1em]">
+                <span>OM GHUBE &copy; 2026</span>
+                <span>BASED IN INDIA</span>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        function scrollToSec(id) {
+            const element = document.getElementById(id);
+            if(element) element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function startCinematic() {
+            const tl = gsap.timeline();
+            const video = document.getElementById('bg-vid');
+
+            tl.to("#intro-layer", { duration: 1.2, opacity: 0, display: "none", ease: "power3.inOut" });
+            tl.to("#video-wrapper", { 
+                opacity: 1, 
+                duration: 0.1, 
+                onStart: () => video.play()
+            });
+            tl.to("#video-wrapper", { scale: 1, duration: 5, ease: "power2.out" });
+
+            tl.to("#main-portfolio", { 
+                duration: 2, 
+                display: "block", 
+                opacity: 1,
+                onStart: () => {
+                    document.body.style.overflowY = "auto";
+                    gsap.to("#top-nav", { display: "flex", opacity: 1, y: 0, duration: 1, ease: "expo.out" });
+                }
+            }, "-=3.5");
+
+            tl.from("section h1, section p, section h3", {
+                y: 50,
+                opacity: 0,
+                stagger: 0.1,
+                duration: 1.5,
+                ease: "expo.out"
+            }, "-=2");
+        }
+
+        gsap.utils.toArray('.glass-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: "top 95%" },
+                y: 40,
+                opacity: 0,
+                duration: 1.2,
+                ease: "expo.out"
+            });
+        });
+    </script>
+</body>
+</html>
